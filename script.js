@@ -121,8 +121,14 @@
     const f = new FormData(e.target);
     const subject = `Website inquiry: ${f.get('goal')}`;
     const body = `Name: ${f.get('name')}\nPhone: ${f.get('phone')}\nEmail: ${f.get('email')}\nLooking to: ${f.get('goal')}\n\n${f.get('story')}`;
-    window.location.href = `mailto:sheri.arnold@fairwaymc.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${f.get('to')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
+
+  /* team bios */
+  $$('[data-bio]').forEach(btn => btn.addEventListener('click', () => {
+    document.getElementById(btn.dataset.bio).showModal();
+  }));
+  $$('dialog.bio').forEach(d => d.addEventListener('click', e => { if (e.target === d) d.close(); }));
 
   $('#yr').textContent = new Date().getFullYear();
 })();
