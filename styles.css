@@ -83,22 +83,20 @@ em { font-style: italic; }
   transition: background-color .35s ease, box-shadow .35s ease, padding .35s ease;
   padding: 22px 0;
 }
-.site-header.is-scrolled {
+.site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
   background: rgba(16, 22, 31, .92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: 12px 0;
   box-shadow: 0 1px 0 var(--line-light);
+  opacity: 0; transition: opacity .35s ease;
 }
+.site-header.is-scrolled { padding: 12px 0; }
+.site-header.is-scrolled::before { opacity: 1; }
 .header-inner { display: flex; align-items: center; gap: 28px; }
-.wordmark {
-  font-family: var(--serif); font-size: 1.6rem; text-decoration: none; letter-spacing: -.01em;
-  margin-right: auto; line-height: 1;
-}
-.wordmark span { color: var(--sun); }
-.wordmark { display: inline-flex; align-items: center; }
-.wm-mark { width: 1.25em; height: 1.25em; flex: none; margin-right: 10px; margin-top: -4px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-.wm-mark path:first-child { stroke: var(--sun); stroke-dasharray: 1.5 4; }
+.brand { display: block; margin-right: auto; line-height: 0; }
+.brand img { height: 52px; width: auto; transition: height .35s ease; }
+.site-header.is-scrolled .brand img { height: 38px; }
 .nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
 .nav a { text-decoration: none; font-weight: 500; font-size: .98rem; opacity: .82; transition: opacity .2s; position: relative; }
 .nav a:hover { opacity: 1; }
@@ -389,9 +387,9 @@ button.member-card { cursor: pointer; }
 /* ---------- footer ---------- */
 .footer { background: #0a0e14; color: rgba(244,239,230,.6); padding: 70px 0 50px; font-size: .9rem; }
 .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 30px; padding-bottom: 36px; border-bottom: 1px solid var(--line-light); }
-.wordmark-light { color: var(--paper); font-size: 2rem; display: inline-block; margin-bottom: 10px; }
+.brand-footer { margin-bottom: 22px; }
+.brand-footer img { height: 64px; }
 .footer-id { margin: 0; line-height: 1.5; }
-.fairway-logo { width: 220px; height: auto; opacity: .85; }
 .legal-links { display: flex; flex-wrap: wrap; gap: 10px 26px; padding: 28px 0; }
 .legal-links a { text-decoration: none; color: rgba(244,239,230,.75); }
 .legal-links a:hover { color: var(--sun); }
@@ -467,5 +465,6 @@ button.member-card { cursor: pointer; }
   .mail-short { display: inline; color: var(--sun-deep); font-weight: 600; }
     .bio-grid { grid-template-columns: 1fr; }
   .bio-grid img { height: 280px; object-position: 50% 20%; }
-  .fairway-logo { width: 180px; }
+  .brand img, .site-header.is-scrolled .brand img { height: 34px; }
+  .brand-footer img { height: 48px; }
 }
