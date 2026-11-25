@@ -96,6 +96,9 @@ em { font-style: italic; }
   margin-right: auto; line-height: 1;
 }
 .wordmark span { color: var(--sun); }
+.wordmark { display: inline-flex; align-items: center; }
+.wm-mark { width: 1.25em; height: 1.25em; flex: none; margin-right: 10px; margin-top: -4px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.wm-mark path:first-child { stroke: var(--sun); stroke-dasharray: 1.5 4; }
 .nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
 .nav a { text-decoration: none; font-weight: 500; font-size: .98rem; opacity: .82; transition: opacity .2s; position: relative; }
 .nav a:hover { opacity: 1; }
@@ -298,15 +301,17 @@ input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 
 /* ---------- values ---------- */
 .values { padding: 0 0 clamp(80px, 10vw, 140px); }
 .values-title { font-size: clamp(1.8rem, 3vw, 2.6rem); max-width: 14em; }
-.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 28px); margin-top: 36px; }
-.value { position: relative; background: var(--ink); color: var(--paper); border-radius: var(--radius); padding: 36px 32px 34px; overflow: hidden; min-height: 300px; display: flex; flex-direction: column; justify-content: flex-end; }
-.value-letter { position: absolute; top: -.18em; right: .04em; font-family: var(--serif); font-size: 13rem; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px rgba(224,102,58,.55); transition: transform .6s cubic-bezier(.2,.7,.2,1), color .4s; }
-.value:hover .value-letter { transform: translateY(10px); color: rgba(224,102,58,.18); }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 28px); margin-top: 8px; }
+.values-path { display: block; width: 100%; height: 110px; margin-top: 20px; overflow: visible; }
+.vp-line { fill: none; stroke: var(--sun); stroke-width: 2.5; stroke-dasharray: 2 10; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.values-path circle { fill: var(--paper); stroke: var(--ink); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.vp-house path { fill: var(--paper); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.vp-house path + path { fill: var(--sun); stroke: var(--sun); }
+.value { position: relative; background: var(--ink); color: var(--paper); border-radius: var(--radius); padding: 36px 32px 34px; overflow: hidden; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+.value:hover { transform: translateY(-6px); }
 .value h3 { font-family: var(--serif); font-weight: 400; font-size: 2rem; margin: 0 0 10px; position: relative; }
 .value p { margin: 0; color: rgba(244,239,230,.72); position: relative; font-size: 1rem; }
 .value:nth-child(2) { background: var(--sea); }
-.value:nth-child(2) .value-letter { -webkit-text-stroke-color: rgba(244,239,230,.4); }
-.value:nth-child(2):hover .value-letter { color: rgba(244,239,230,.12); }
 .value:nth-child(2) p { color: rgba(244,239,230,.85); }
 
 /* ---------- team ---------- */
@@ -436,7 +441,7 @@ button.member-card { cursor: pointer; }
   .approach-grid, .serve-grid, .calc-grid, .contact-grid, .team-head { grid-template-columns: 1fr; }
   .team-grid { grid-template-columns: repeat(2, 1fr); }
   .values-grid { grid-template-columns: 1fr; }
-  .value { min-height: 220px; }
+  .values-path { display: none; }
   .cycle { max-width: 320px; order: -1; }
   .serve-title { position: static; }
 }
@@ -460,8 +465,7 @@ button.member-card { cursor: pointer; }
   .member-contact { font-size: .85rem; }
   .mail-full { display: none; }
   .mail-short { display: inline; color: var(--sun-deep); font-weight: 600; }
-  .value-letter { font-size: 9rem; }
-  .bio-grid { grid-template-columns: 1fr; }
+    .bio-grid { grid-template-columns: 1fr; }
   .bio-grid img { height: 280px; object-position: 50% 20%; }
   .fairway-logo { width: 180px; }
 }
